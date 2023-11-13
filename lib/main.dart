@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:haditsku/utils/constant.dart';
-import 'package:haditsku/views/search_hadith_screen/views/search_hadith_screen.dart';
+import 'package:haditsku/views/home_screen/views/home_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Color(Constant.witheColorBase),
       ),
       debugShowCheckedModeBanner: false,
-      home: SearchHaditsScreen(),
+      home: HomeScreen(),
     );
   }
 }
