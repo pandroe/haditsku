@@ -3,7 +3,7 @@ import 'package:haditsku/models/hadits_model.dart';
 
 import '../../../utils/constant.dart';
 
-class SearchResultHadithScreen extends StatelessWidget {
+class SearchResultHadithScreen extends StatefulWidget {
   final List<Hadith> searchResults;
   final String query;
   final List<HaditsModel> haditsModels; // Add this line
@@ -15,6 +15,12 @@ class SearchResultHadithScreen extends StatelessWidget {
     required this.haditsModels, // Add this line
   }) : super(key: key);
 
+  @override
+  State<SearchResultHadithScreen> createState() =>
+      _SearchResultHadithScreenState();
+}
+
+class _SearchResultHadithScreenState extends State<SearchResultHadithScreen> {
   TextSpan _highlightText(String text, String query, {bool bold = false}) {
     List<TextSpan> spans = [];
 
@@ -114,7 +120,7 @@ class SearchResultHadithScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Text(
-                          '$query',
+                          '${widget.query}',
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
@@ -124,7 +130,7 @@ class SearchResultHadithScreen extends StatelessWidget {
                         ),
                         SizedBox(height: constant.size.height * 0.025),
                         Text(
-                          '${searchResults.length} Hadits ditemukan ',
+                          '${widget.searchResults.length} Hadits ditemukan ',
                           textAlign: TextAlign.right,
                           style: TextStyle(
                             fontSize: Constant.fontRegular,
@@ -136,12 +142,12 @@ class SearchResultHadithScreen extends StatelessWidget {
                 ),
                 Expanded(
                   child: ListView.builder(
-                    itemCount: searchResults.length,
+                    itemCount: widget.searchResults.length,
                     itemBuilder: (context, index) {
-                      final hadits = searchResults[index];
+                      final hadits = widget.searchResults[index];
 
                       HaditsModel? currentHaditsModel;
-                      for (var model in haditsModels) {
+                      for (var model in widget.haditsModels) {
                         if (model.data.hadiths.contains(hadits)) {
                           currentHaditsModel = model;
                           break;
@@ -174,7 +180,8 @@ class SearchResultHadithScreen extends StatelessWidget {
                                   maxLines:
                                       3, // Add maxLines and overflow properties
                                   overflow: TextOverflow.ellipsis,
-                                  text: _highlightText(hadits.arab, query),
+                                  text:
+                                      _highlightText(hadits.arab, widget.query),
                                   textAlign: TextAlign.justify,
                                 ),
                                 SizedBox(height: constant.size.height * 0.025),
@@ -185,11 +192,11 @@ class SearchResultHadithScreen extends StatelessWidget {
                                   text: _combineTextSpans([
                                     _highlightText(
                                       '"${hadits.id}',
-                                      query,
+                                      widget.query,
                                     ),
                                     _highlightText(
                                       ' (${currentHaditsModel?.data.name} : ${hadits.number})',
-                                      query,
+                                      widget.query,
                                       bold: true,
                                     ),
                                   ]),
