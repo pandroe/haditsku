@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:haditsku/utils/constant.dart';
 import 'views/about_screen/views/about_screen.dart';
 import 'views/home_screen/views/home_screen.dart';
 import 'views/search_hadith_screen/views/search_hadith_screen.dart';
@@ -11,6 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(primaryColor: Color(Constant.witheColorBase)),
       debugShowCheckedModeBanner: false,
       home: MyHomePage(),
     );
