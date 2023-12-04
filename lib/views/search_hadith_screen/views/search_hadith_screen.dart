@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:haditsku/models/hadits_model.dart';
 
+import '../../../utils/constant.dart';
 import '../../search_result_hadith_screen/views/search_result_hadith_screen.dart';
 
 class SearchHaditsScreen extends StatefulWidget {
@@ -54,53 +55,200 @@ class _SearchHaditsScreenState extends State<SearchHaditsScreen> {
   }
 
   void _performSearch(String query) {
-  if (query.isEmpty) {
+    if (query.isEmpty) {
+      setState(() {
+        searchResults.clear();
+      });
+      return;
+    }
+
     setState(() {
-      searchResults.clear();
+      searchResults = allHadits.where((hadits) {
+        return hadits.arab.toLowerCase().contains(query.toLowerCase()) ||
+            hadits.id.toLowerCase().contains(query.toLowerCase());
+      }).toList();
     });
-    return;
-  }
 
-  setState(() {
-    searchResults = allHadits.where((hadits) {
-      return hadits.arab.toLowerCase().contains(query.toLowerCase()) ||
-          hadits.id.toLowerCase().contains(query.toLowerCase());
-    }).toList();
-  });
-
-  if (searchResults.isNotEmpty) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => SearchResultHadithScreen(
-          searchResults: searchResults,
-          query: query,
-          haditsModels: haditsModels, // Pass haditsModels here
+    if (searchResults.isNotEmpty) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => SearchResultHadithScreen(
+            searchResults: searchResults,
+            query: query,
+            haditsModels: haditsModels,
+          ),
         ),
-      ),
-    );
+      );
+    } else {
+      // Show the popup
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(
+                  15.0), // Sesuaikan dengan radius yang diinginkan
+            ),
+            title: Text('Hadits tidak ditemukan'),
+            content:
+                Text('Maaf, kata kunci hadits yang Anda cari tidak ditemukan.'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text(
+                  'Tutup',
+                  style: TextStyle(color: Color(Constant.greenColorPrimary)),
+                ),
+              ),
+            ],
+          );
+        },
+      );
+    }
   }
-}
 
-  
   @override
   Widget build(BuildContext context) {
+    Constant constant = Constant(context);
     return Scaffold(
-      body: Column(
-        children: [
-          SizedBox(height: 50,),
-          TextField(
-            controller: _searchController,
-            decoration: InputDecoration(
-              hintText: 'Cari hadits...',
-              prefixIcon: Icon(Icons.search),
-            ),
-            onChanged: (query) {
-              _performSearch(query);
-            },
+      body: ListView(children: [
+        Padding(
+          padding: const EdgeInsets.only(top: 25.0, right: 18.0, left: 18.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  InkWell(
+                    child: Image.asset(
+                      'assets/buttons/images/chevron-left.png',
+                      height: constant.size.height * 0.035,
+                    ),
+                  ),
+                  InkWell(
+                    child: Image.asset(
+                      'assets/buttons/images/more-vertical.png',
+                      height: constant.size.height * 0.035,
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: constant.size.height * 0.025),
+              Text(
+                'Cari Hadits',
+                style: TextStyle(
+                    fontSize: Constant.fontSemiBig,
+                    fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: constant.size.height * 0.025),
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12.0),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 1,
+                      blurRadius: 5,
+                      offset: Offset(0, 2),
+                    ),
+                  ],
+                ),
+                child: TextField(
+                  controller: _searchController,
+                  decoration: InputDecoration(
+                    contentPadding: EdgeInsets.all(25.0),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12.0),
+                      borderSide: BorderSide(color: Color(Constant.grayColor)),
+                    ),
+                    prefixIconColor: Color(Constant.grayColor),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12.0),
+                      borderSide: BorderSide(color: Color(Constant.grayColor)),
+                    ),
+                    hintText: 'Ingin mencari hadits tentang...',
+                    hintStyle: TextStyle(),
+                    prefixIcon: Padding(
+                      padding: const EdgeInsets.only(left: 20.0, right: 18.0),
+                      child: Icon(
+                        Icons.search,
+                        size: 32.0,
+                      ),
+                    ),
+                    suffixIcon: Padding(
+                      padding: const EdgeInsets.only(left: 18.0, right: 20.0),
+                      child: InkWell(
+                        child: Icon(
+                          Icons.clear_rounded,
+                          color: Color(Constant.grayColor),
+                        ),
+                        onTap: () {
+                          _searchController.clear();
+                        },
+                      ),
+                    ),
+                    fillColor: Color(Constant.witheColorNetral),
+                    filled: true,
+                  ),
+                  onSubmitted: (query) {
+                    _performSearch(query);
+                  },
+                ),
+              ),
+              SizedBox(height: constant.size.height * 0.050),
+              Text(
+                'Pencarian Kata Kunci',
+                style: TextStyle(
+                    fontSize: Constant.fontSemiBig,
+                    fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: constant.size.height * 0.025),
+              Wrap(
+                alignment: WrapAlignment.center,
+                spacing: 8.0, // Adjust the spacing as needed
+                children: [
+                  _buildSearchButton('Kendaraan'),
+                  _buildSearchButton('Menuntut Ilmu'),
+                  _buildSearchButton('Kebersihan'),
+                  _buildSearchButton('Sabar'),
+                  _buildSearchButton('Puasa'),
+                  _buildSearchButton('Silaturahmi'),
+                  _buildSearchButton('Persaudaraan'),
+                  _buildSearchButton('Ikhlas'),
+                  _buildSearchButton('Sedekah'),
+                  _buildSearchButton('Akhlak'),
+                ],
+              ),
+            ],
           ),
-         
-        ],
+        ),
+      ]),
+    );
+  }
+
+  Widget _buildSearchButton(String buttonText) {
+    return OutlinedButton(
+      style: ButtonStyle(
+        side: MaterialStatePropertyAll<BorderSide>(
+          BorderSide(color: Color(Constant.greenColorPrimary)),
+        ),
+        shape: MaterialStatePropertyAll<OutlinedBorder>(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(
+                15.0), // Sesuaikan dengan radius yang diinginkan
+          ),
+        ),
+      ),
+      onPressed: () {
+        _performSearch(buttonText);
+      },
+      child: Text(
+        buttonText,
+        style: TextStyle(color: Color(Constant.greenColorPrimary)),
       ),
     );
   }
