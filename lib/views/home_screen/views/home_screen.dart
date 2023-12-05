@@ -76,6 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
           return Column(
             children: [
+              SizedBox(height: 50),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -105,11 +106,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     return Column(
                       children: [
                         SizedBox(height: constant.size.height * 0.020),
-                        Text(hadits.arab),
+                        Text(hadits.arab,textAlign: TextAlign.justify,),
                         SizedBox(height: constant.size.height * 0.010),
                         Text(
                           '${hadits.id} (${currentHaditsModel!.data.name} : ${hadits.number})',
-                        ),
+                       textAlign: TextAlign.justify, ),
                         SizedBox(height: constant.size.height * 0.015),
                       ],
                     );
