@@ -55,10 +55,31 @@ class _SearchHaditsScreenState extends State<SearchHaditsScreen> {
   }
 
   void _performSearch(String query) {
-    if (query.isEmpty) {
-      setState(() {
-        searchResults.clear();
-      });
+    if (query.length < 2) {
+      // Show the popup for less than 2 characters
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15.0),
+            ),
+            title: Text('Pencarian Salah'),
+            content: Text('Pencarian harus mengandung minimal 2 huruf.'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text(
+                  'Tutup',
+                  style: TextStyle(color: Color(Constant.greenColorPrimary)),
+                ),
+              ),
+            ],
+          );
+        },
+      );
       return;
     }
 
@@ -81,14 +102,13 @@ class _SearchHaditsScreenState extends State<SearchHaditsScreen> {
         ),
       );
     } else {
-      // Show the popup
+      // Show the popup for no results found
       showDialog(
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(
-                  15.0), // Sesuaikan dengan radius yang diinginkan
+              borderRadius: BorderRadius.circular(15.0),
             ),
             title: Text('Hadits tidak ditemukan'),
             content:
