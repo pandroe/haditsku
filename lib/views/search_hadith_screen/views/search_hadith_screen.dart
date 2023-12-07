@@ -163,12 +163,14 @@ class _SearchHaditsScreenState extends State<SearchHaditsScreen> {
                     contentPadding: EdgeInsets.all(25.0),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12.0),
-                      borderSide: BorderSide(color: Color(Constant.grayColor)),
+                      borderSide: BorderSide(
+                          color: Color(Constant.grayColorNetralLight)),
                     ),
-                    prefixIconColor: Color(Constant.grayColor),
+                    prefixIconColor: Color(Constant.grayColorNetralLight),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12.0),
-                      borderSide: BorderSide(color: Color(Constant.grayColor)),
+                      borderSide: BorderSide(
+                          color: Color(Constant.grayColorNetralLight)),
                     ),
                     hintText: 'Ingin mencari hadits tentang...',
                     hintStyle: TextStyle(),
@@ -184,7 +186,7 @@ class _SearchHaditsScreenState extends State<SearchHaditsScreen> {
                       child: InkWell(
                         child: Icon(
                           Icons.clear_rounded,
-                          color: Color(Constant.grayColor),
+                          color: Color(Constant.grayColorNetralLight),
                         ),
                         onTap: () {
                           _searchController.clear();
