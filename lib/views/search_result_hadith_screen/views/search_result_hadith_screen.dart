@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:haditsku/models/hadits_model.dart';
 
 import '../../../utils/constant.dart';
+import '../../search_detail_screen/views/search_detail_screen.dart';
 
 class SearchResultHadithScreen extends StatefulWidget {
   final List<Hadith> searchResults;
@@ -154,60 +155,99 @@ class _SearchResultHadithScreenState extends State<SearchResultHadithScreen> {
                         }
                       }
 
-                      return Container(
-                        padding: const EdgeInsets.only(right: 15.0, left: 15.0),
-                        margin: EdgeInsets.symmetric(vertical: 20.0),
-                        child: Card(
-                          elevation: 5.0,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15.0),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(21.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
-                              children: [
-                                SizedBox(height: constant.size.height * 0.025),
-                                Text(
-                                  '${currentHaditsModel?.data.name} - ${hadits.number}',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: Constant.fontSemiRegular,
+                      return GestureDetector(
+                          onTap: () async {
+                            // Show CircularProgressIndicator
+                            showDialog(
+                              context: context,
+                              barrierDismissible: false,
+                              builder: (BuildContext context) {
+                                return Center(
+                                  child: CircularProgressIndicator(
+                                    color: Color(Constant.greenColorPrimary),
                                   ),
+                                );
+                              },
+                            );
+
+                            // Wait for 1 second
+                            await Future.delayed(Duration(seconds: 1));
+
+                            // Close CircularProgressIndicator
+                            Navigator.pop(context);
+
+                            // Navigate to HadithDetailScreen
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => HadithDetailScreen(
+                                  hadith: hadits,
+                                  haditsModel: currentHaditsModel!,
+                                  query: widget.query,
                                 ),
-                                SizedBox(height: constant.size.height * 0.025),
-                                RichText(
-                                  maxLines:
-                                      3, // Add maxLines and overflow properties
-                                  overflow: TextOverflow.ellipsis,
-                                  text:
-                                      _highlightText(hadits.arab, widget.query),
-                                  textAlign: TextAlign.justify,
-                                ),
-                                SizedBox(height: constant.size.height * 0.025),
-                                RichText(
-                                  maxLines:
-                                      3, // Add maxLines and overflow properties
-                                  overflow: TextOverflow.ellipsis,
-                                  text: _combineTextSpans([
-                                    _highlightText(
-                                      '"${hadits.id}',
-                                      widget.query,
+                              ),
+                            );
+                          },
+                          child: Container(
+                            padding:
+                                const EdgeInsets.only(right: 15.0, left: 15.0),
+                            margin: EdgeInsets.symmetric(vertical: 20.0),
+                            child: Card(
+                              elevation: 5.0,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15.0),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(21.0),
+                                child: Column(
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.stretch,
+                                  children: [
+                                    SizedBox(
+                                        height: constant.size.height * 0.025),
+                                    Text(
+                                      '${currentHaditsModel?.data.name} - ${hadits.number}',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: Constant.fontSemiRegular,
+                                      ),
                                     ),
-                                    _highlightText(
-                                      ' (${currentHaditsModel?.data.name} : ${hadits.number})',
-                                      widget.query,
-                                      bold: true,
+                                    SizedBox(
+                                        height: constant.size.height * 0.025),
+                                    RichText(
+                                      maxLines:
+                                          3, // Add maxLines and overflow properties
+                                      overflow: TextOverflow.ellipsis,
+                                      text: _highlightText(
+                                          hadits.arab, widget.query),
+                                      textAlign: TextAlign.justify,
                                     ),
-                                  ]),
-                                  textAlign: TextAlign.justify,
+                                    SizedBox(
+                                        height: constant.size.height * 0.025),
+                                    RichText(
+                                      maxLines:
+                                          3, // Add maxLines and overflow properties
+                                      overflow: TextOverflow.ellipsis,
+                                      text: _combineTextSpans([
+                                        _highlightText(
+                                          '"${hadits.id}',
+                                          widget.query,
+                                        ),
+                                        _highlightText(
+                                          ' (${currentHaditsModel?.data.name} : ${hadits.number})',
+                                          widget.query,
+                                          bold: true,
+                                        ),
+                                      ]),
+                                      textAlign: TextAlign.justify,
+                                    ),
+                                    SizedBox(
+                                        height: constant.size.height * 0.025),
+                                  ],
                                 ),
-                                SizedBox(height: constant.size.height * 0.025),
-                              ],
+                              ),
                             ),
-                          ),
-                        ),
-                      );
+                          ));
                     },
                   ),
                 ),

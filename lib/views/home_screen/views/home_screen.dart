@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:haditsku/models/hadits_model.dart';
 import 'package:haditsku/utils/constant.dart';
 
+import '../../search_detail_screen/views/search_detail_screen.dart';
+
 class HomeScreen extends StatefulWidget {
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -184,55 +186,89 @@ class _HomeScreenState extends State<HomeScreen> {
                             }
                           }
 
-                          return Container(
-                            padding:
-                                const EdgeInsets.only(right: 18.0, left: 18.0),
-                            margin: EdgeInsets.symmetric(vertical: 20.0),
-                            child: Card(
-                              elevation: 5.0,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(15.0),
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(21.0),
-                                child: Column(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.stretch,
-                                  children: [
-                                    SizedBox(
-                                        height: constant.size.height * 0.025),
-                                    Text(
-                                      '${currentHaditsModel?.data.name} - ${hadits.number}',
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: Constant.fontSemiRegular,
-                                      ),
+                          return GestureDetector(
+                            onTap: () async {
+                              // Show CircularProgressIndicator
+                              showDialog(
+                                context: context,
+                                barrierDismissible: false,
+                                builder: (BuildContext context) {
+                                  return Center(
+                                    child: CircularProgressIndicator(
+                                      color: Color(Constant.greenColorPrimary),
                                     ),
-                                    SizedBox(
-                                        height: constant.size.height * 0.025),
-                                    Text(
-                                      maxLines: 3,
-                                      overflow: TextOverflow.ellipsis,
-                                      '${hadits.arab}',
-                                      style: TextStyle(
-                                        fontStyle: FontStyle.italic,
-                                        color: Colors.black,
+                                  );
+                                },
+                              );
+
+                              // Wait for 1 second
+                              await Future.delayed(Duration(seconds: 1));
+
+                              // Close CircularProgressIndicator
+                              Navigator.pop(context);
+
+                              // Navigate to HadithDetailScreen
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => HadithDetailScreen(
+                                    hadith: hadits,
+                                    haditsModel: currentHaditsModel!,
+                                    query: '',
+                                  ),
+                                ),
+                              );
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.only(
+                                  right: 18.0, left: 18.0),
+                              margin: EdgeInsets.symmetric(vertical: 20.0),
+                              child: Card(
+                                elevation: 5.0,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(15.0),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(21.0),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.stretch,
+                                    children: [
+                                      SizedBox(
+                                          height: constant.size.height * 0.025),
+                                      Text(
+                                        '${currentHaditsModel?.data.name} - ${hadits.number}',
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: Constant.fontSemiRegular,
+                                        ),
                                       ),
-                                    ),
-                                    SizedBox(
-                                        height: constant.size.height * 0.025),
-                                    Text(
-                                      maxLines: 3,
-                                      overflow: TextOverflow.ellipsis,
-                                      '${hadits.id}',
-                                      style: TextStyle(
-                                        fontStyle: FontStyle.italic,
-                                        color: Colors.black,
+                                      SizedBox(
+                                          height: constant.size.height * 0.025),
+                                      Text(
+                                        maxLines: 3,
+                                        overflow: TextOverflow.ellipsis,
+                                        '${hadits.arab}',
+                                        style: TextStyle(
+                                          fontStyle: FontStyle.italic,
+                                          color: Colors.black,
+                                        ),
                                       ),
-                                    ),
-                                    SizedBox(
-                                        height: constant.size.height * 0.025),
-                                  ],
+                                      SizedBox(
+                                          height: constant.size.height * 0.025),
+                                      Text(
+                                        maxLines: 3,
+                                        overflow: TextOverflow.ellipsis,
+                                        '${hadits.id}',
+                                        style: TextStyle(
+                                          fontStyle: FontStyle.italic,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                          height: constant.size.height * 0.025),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),

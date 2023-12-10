@@ -55,10 +55,31 @@ class _SearchHaditsScreenState extends State<SearchHaditsScreen> {
   }
 
   void _performSearch(String query) {
-    if (query.isEmpty) {
-      setState(() {
-        searchResults.clear();
-      });
+    if (query.length < 2) {
+      // Show the popup for less than 2 characters
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15.0),
+            ),
+            title: Text('Pencarian Salah'),
+            content: Text('Pencarian harus mengandung minimal 2 huruf.'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text(
+                  'Tutup',
+                  style: TextStyle(color: Color(Constant.greenColorPrimary)),
+                ),
+              ),
+            ],
+          );
+        },
+      );
       return;
     }
 
@@ -81,14 +102,13 @@ class _SearchHaditsScreenState extends State<SearchHaditsScreen> {
         ),
       );
     } else {
-      // Show the popup
+      // Show the popup for no results found
       showDialog(
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(
-                  15.0), // Sesuaikan dengan radius yang diinginkan
+              borderRadius: BorderRadius.circular(15.0),
             ),
             title: Text('Hadits tidak ditemukan'),
             content:
@@ -163,12 +183,14 @@ class _SearchHaditsScreenState extends State<SearchHaditsScreen> {
                     contentPadding: EdgeInsets.all(25.0),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12.0),
-                      borderSide: BorderSide(color: Color(Constant.grayColor)),
+                      borderSide: BorderSide(
+                          color: Color(Constant.grayColorNetralLight)),
                     ),
-                    prefixIconColor: Color(Constant.grayColor),
+                    prefixIconColor: Color(Constant.grayColorNetralLight),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12.0),
-                      borderSide: BorderSide(color: Color(Constant.grayColor)),
+                      borderSide: BorderSide(
+                          color: Color(Constant.grayColorNetralLight)),
                     ),
                     hintText: 'Ingin mencari hadits tentang...',
                     hintStyle: TextStyle(),
@@ -184,7 +206,7 @@ class _SearchHaditsScreenState extends State<SearchHaditsScreen> {
                       child: InkWell(
                         child: Icon(
                           Icons.clear_rounded,
-                          color: Color(Constant.grayColor),
+                          color: Color(Constant.grayColorNetralLight),
                         ),
                         onTap: () {
                           _searchController.clear();
