@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:haditsku/models/hadits_model.dart';
 
 import '../../../utils/constant.dart';
@@ -22,11 +23,25 @@ class _HadithDetailScreenState extends State<HadithDetailScreen> {
   bool showArabicText = true;
   bool showIndonesianText = true;
   double currentFontSize = Constant.fontBig;
-  bool isAButtonFontPressedSemiReguler =
-      true; // Track the state of the 'A' button
-  bool isAButtonFontPressedBig = true; // Track the state of the 'A' button
-  bool isAButtonFontPressedExtraBig = true; // Track the state of the 'A' button
+  bool isAButtonFontPressedSemiReguler = true;
+  bool isAButtonFontPressedBig = true;
+  bool isAButtonFontPressedExtraBig = true;
   final ScrollController _scrollController = ScrollController();
+  bool _isVisible = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    // Set listener to detect scroll direction
+    _scrollController.addListener(() {
+      setState(() {
+        _isVisible = _scrollController.position.pixels != 0.0 &&
+            _scrollController.position.userScrollDirection ==
+                ScrollDirection.reverse;
+      });
+    });
+  }
 
   TextSpan _highlightText(String text, String? query, {bool bold = false}) {
     List<TextSpan> spans = [];
@@ -294,19 +309,30 @@ class _HadithDetailScreenState extends State<HadithDetailScreen> {
             ),
           ),
           Positioned(
-            bottom: 16.0,
-            right: 16.0, // Adjust the position as needed
-            child: FloatingActionButton(
-              backgroundColor: Color(Constant.greenColorPrimary),
-              onPressed: () {
-                _scrollController.animateTo(
-                  0.0,
-                  duration: Duration(seconds: 1),
-                  curve: Curves.easeInOut,
-                );
-              },
-              child: Icon(Icons.keyboard_arrow_up_outlined,
-                  color: Color(Constant.witheColorNetral)),
+            bottom: 25.0,
+            right: 16.0,
+            child: AnimatedOpacity(
+              opacity: _isVisible ? 1.0 : 0.0,
+              duration: Duration(milliseconds: 500),
+              child: _isVisible
+                  ? SizedBox(
+                      height: constant.size.height * 0.050,
+                      child: FloatingActionButton(
+                        backgroundColor: Color(Constant.greenColorPrimary),
+                        onPressed: () {
+                          _scrollController.animateTo(
+                            0.0,
+                            duration: Duration(seconds: 1),
+                            curve: Curves.easeInOut,
+                          );
+                        },
+                        child: Icon(
+                          Icons.keyboard_arrow_up_outlined,
+                          color: Color(Constant.witheColorNetral),
+                        ),
+                      ),
+                    )
+                  : SizedBox.shrink(),
             ),
           ),
         ],
