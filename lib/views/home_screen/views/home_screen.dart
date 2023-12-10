@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:haditsku/models/hadits_model.dart';
 import 'package:haditsku/utils/constant.dart';
+import 'package:haditsku/views/narrator_hadith_screen/views/narrator_hadith_screen.dart';
 
 import '../../search_detail_screen/views/search_detail_screen.dart';
 
@@ -139,7 +140,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     Padding(
                       padding: const EdgeInsets.only(right: 21.0, left: 18.0),
                       child: GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => NarratorHadithScreen(),
+                              ));
+                        },
                         child: Text(
                           'Lihat lainnya',
                           style: TextStyle(
