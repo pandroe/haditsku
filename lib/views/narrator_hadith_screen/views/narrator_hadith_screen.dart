@@ -1,6 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:haditsku/views/narrator_hadith_screen/views/detail_narrator_hadith_screen/views/detail_narrator_abu_daud_hadith_screen.dart';
+import 'package:haditsku/views/narrator_hadith_screen/views/detail_narrator_hadith_screen/views/detail_narrator_ahmad_hadith_screen.dart';
+import 'package:haditsku/views/narrator_hadith_screen/views/detail_narrator_hadith_screen/views/detail_narrator_bukhari_hadith_screen.dart';
+import 'package:haditsku/views/narrator_hadith_screen/views/detail_narrator_hadith_screen/views/detail_narrator_darimi_hadith_screen.dart';
+import 'package:haditsku/views/narrator_hadith_screen/views/detail_narrator_hadith_screen/views/detail_narrator_malik_hadith_screen.dart';
+import 'package:haditsku/views/narrator_hadith_screen/views/detail_narrator_hadith_screen/views/detail_narrator_muslim_hadith_screen.dart';
 
 import '../../../utils/constant.dart';
+import 'detail_narrator_hadith_screen/views/detail_narrator_ibnu_majah_hadith_screen.dart';
+import 'detail_narrator_hadith_screen/views/detail_narrator_nasai_hadith_screen.dart';
+import 'detail_narrator_hadith_screen/views/detail_narrator_tirmidzi_hadith_screen.dart';
 
 class NarratorHadithScreen extends StatefulWidget {
   const NarratorHadithScreen({super.key});
@@ -38,7 +47,31 @@ class _NarratorHadithScreenState extends State<NarratorHadithScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () async {
+                      showDialog(
+                        context: context,
+                        barrierDismissible: false,
+                        builder: (BuildContext context) {
+                          return Center(
+                            child: CircularProgressIndicator(
+                              color: Color(Constant.greenColorPrimary),
+                            ),
+                          );
+                        },
+                      );
+
+                      // Wait for 1 second
+                      await Future.delayed(Duration(seconds: 1));
+
+                      // Close CircularProgressIndicator
+                      Navigator.pop(context);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                DetailNarratorBukhariHadithScreen(),
+                          ));
+                    },
                     child: Column(
                       children: [
                         Image.asset(
@@ -56,7 +89,31 @@ class _NarratorHadithScreenState extends State<NarratorHadithScreen> {
                     ),
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () async {
+                      showDialog(
+                        context: context,
+                        barrierDismissible: false,
+                        builder: (BuildContext context) {
+                          return Center(
+                            child: CircularProgressIndicator(
+                              color: Color(Constant.greenColorPrimary),
+                            ),
+                          );
+                        },
+                      );
+
+                      // Wait for 1 second
+                      await Future.delayed(Duration(seconds: 1));
+
+                      // Close CircularProgressIndicator
+                      Navigator.pop(context);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                DetailNarratorMuslimHadithScreen(),
+                          ));
+                    },
                     child: Column(
                       children: [
                         Image.asset(
@@ -74,7 +131,31 @@ class _NarratorHadithScreenState extends State<NarratorHadithScreen> {
                     ),
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () async {
+                      showDialog(
+                        context: context,
+                        barrierDismissible: false,
+                        builder: (BuildContext context) {
+                          return Center(
+                            child: CircularProgressIndicator(
+                              color: Color(Constant.greenColorPrimary),
+                            ),
+                          );
+                        },
+                      );
+
+                      // Wait for 1 second
+                      await Future.delayed(Duration(seconds: 1));
+
+                      // Close CircularProgressIndicator
+                      Navigator.pop(context);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                DetailNarratorAbuDaudHadithScreen(),
+                          ));
+                    },
                     child: Column(
                       children: [
                         Image.asset(
@@ -99,7 +180,31 @@ class _NarratorHadithScreenState extends State<NarratorHadithScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () async {
+                      showDialog(
+                        context: context,
+                        barrierDismissible: false,
+                        builder: (BuildContext context) {
+                          return Center(
+                            child: CircularProgressIndicator(
+                              color: Color(Constant.greenColorPrimary),
+                            ),
+                          );
+                        },
+                      );
+
+                      // Wait for 1 second
+                      await Future.delayed(Duration(seconds: 1));
+
+                      // Close CircularProgressIndicator
+                      Navigator.pop(context);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                DetailNarratorTirmidziHadithScreen(),
+                          ));
+                    },
                     child: Column(
                       children: [
                         Image.asset(
@@ -117,7 +222,31 @@ class _NarratorHadithScreenState extends State<NarratorHadithScreen> {
                     ),
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () async {
+                      showDialog(
+                        context: context,
+                        barrierDismissible: false,
+                        builder: (BuildContext context) {
+                          return Center(
+                            child: CircularProgressIndicator(
+                              color: Color(Constant.greenColorPrimary),
+                            ),
+                          );
+                        },
+                      );
+
+                      // Wait for 1 second
+                      await Future.delayed(Duration(seconds: 1));
+
+                      // Close CircularProgressIndicator
+                      Navigator.pop(context);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                DetailNarratorNasaiHadithScreen(),
+                          ));
+                    },
                     child: Column(
                       children: [
                         Image.asset(
@@ -135,7 +264,31 @@ class _NarratorHadithScreenState extends State<NarratorHadithScreen> {
                     ),
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () async {
+                      showDialog(
+                        context: context,
+                        barrierDismissible: false,
+                        builder: (BuildContext context) {
+                          return Center(
+                            child: CircularProgressIndicator(
+                              color: Color(Constant.greenColorPrimary),
+                            ),
+                          );
+                        },
+                      );
+
+                      // Wait for 1 second
+                      await Future.delayed(Duration(seconds: 1));
+
+                      // Close CircularProgressIndicator
+                      Navigator.pop(context);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                DetailNarratorIbnuMajahHadithScreen(),
+                          ));
+                    },
                     child: Column(
                       children: [
                         Image.asset(
@@ -160,15 +313,39 @@ class _NarratorHadithScreenState extends State<NarratorHadithScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () async {
+                      showDialog(
+                        context: context,
+                        barrierDismissible: false,
+                        builder: (BuildContext context) {
+                          return Center(
+                            child: CircularProgressIndicator(
+                              color: Color(Constant.greenColorPrimary),
+                            ),
+                          );
+                        },
+                      );
+
+                      // Wait for 1 second
+                      await Future.delayed(Duration(seconds: 1));
+
+                      // Close CircularProgressIndicator
+                      Navigator.pop(context);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                DetailNarratorMalikHadithScreen(),
+                          ));
+                    },
                     child: Column(
                       children: [
                         Image.asset(
                             height: constant.size.height * 0.180,
-                            'assets/images/kitab_cover/kitab-muwaththa-malik.jpg'),
+                            'assets/images/kitab_cover/kitab-muwatha-malik.jpg'),
                         SizedBox(height: constant.size.height * 0.015),
                         Text(
-                          'Muwatha\'\ Malik',
+                          'Muwatha\' Malik',
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: Constant.fontSemiSmall,
@@ -178,7 +355,31 @@ class _NarratorHadithScreenState extends State<NarratorHadithScreen> {
                     ),
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () async {
+                      showDialog(
+                        context: context,
+                        barrierDismissible: false,
+                        builder: (BuildContext context) {
+                          return Center(
+                            child: CircularProgressIndicator(
+                              color: Color(Constant.greenColorPrimary),
+                            ),
+                          );
+                        },
+                      );
+
+                      // Wait for 1 second
+                      await Future.delayed(Duration(seconds: 1));
+
+                      // Close CircularProgressIndicator
+                      Navigator.pop(context);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                DetailNarratorAhmadHadithScreen(),
+                          ));
+                    },
                     child: Column(
                       children: [
                         Image.asset(
@@ -196,7 +397,31 @@ class _NarratorHadithScreenState extends State<NarratorHadithScreen> {
                     ),
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () async {
+                      showDialog(
+                        context: context,
+                        barrierDismissible: false,
+                        builder: (BuildContext context) {
+                          return Center(
+                            child: CircularProgressIndicator(
+                              color: Color(Constant.greenColorPrimary),
+                            ),
+                          );
+                        },
+                      );
+
+                      // Wait for 1 second
+                      await Future.delayed(Duration(seconds: 1));
+
+                      // Close CircularProgressIndicator
+                      Navigator.pop(context);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                DetailNarratorDarimiHadithScreen(),
+                          ));
+                    },
                     child: Column(
                       children: [
                         Image.asset(
