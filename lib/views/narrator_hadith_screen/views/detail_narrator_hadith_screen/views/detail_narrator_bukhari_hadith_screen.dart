@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:haditsku/models/hadits_model.dart';
+import 'package:haditsku/views/narrator_hadith_screen/views/list_narrator_hadith_screen/views/list_narrator_bukhari_hadith_screen.dart';
 
 import '../../../../../utils/constant.dart';
 import '../../../../search_detail_screen/views/search_detail_screen.dart';
@@ -193,11 +194,12 @@ class _DetailNarratorBukhariHadithScreenState
                   ),
                   GestureDetector(
                     onTap: () {
-                      // Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //       builder: (context) => NarratorHadithScreen(),
-                      //     ));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                ListNarratorBukhariHadithScreen(),
+                          ));
                     },
                     child: Text(
                       'Lihat lainnya',

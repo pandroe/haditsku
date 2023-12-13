@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:haditsku/models/hadits_model.dart';
+import 'package:haditsku/views/narrator_hadith_screen/views/list_narrator_hadith_screen/views/list_narrator_ahmad_hadith_screen.dart';
 
 import '../../../../../utils/constant.dart';
 import '../../../../search_detail_screen/views/search_detail_screen.dart';
@@ -86,8 +87,8 @@ class _DetailNarratorAhmadHadithScreenState
     }
 
     final haditsModels = _haditsModels!;
-    final allHaditsMuslim = [...haditsModels[0].data.hadiths];
-    final List<Hadith> threeHadits = allHaditsMuslim.take(3).toList();
+    final allHaditsAhmad = [...haditsModels[0].data.hadiths];
+    final List<Hadith> threeHadits = allHaditsAhmad.take(3).toList();
 
     return Scaffold(
       appBar: AppBar(
@@ -193,11 +194,12 @@ class _DetailNarratorAhmadHadithScreenState
                   ),
                   GestureDetector(
                     onTap: () {
-                      // Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //       builder: (context) => NarratorHadithScreen(),
-                      //     ));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                ListNarratorAhmadHadithScreen(),
+                          ));
                     },
                     child: Text(
                       'Lihat lainnya',

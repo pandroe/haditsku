@@ -6,6 +6,7 @@ import 'package:haditsku/models/hadits_model.dart';
 
 import '../../../../../utils/constant.dart';
 import '../../../../search_detail_screen/views/search_detail_screen.dart';
+import '../../list_narrator_hadith_screen/views/list_narrator_muslim_hadith_screen.dart';
 
 class DetailNarratorMuslimHadithScreen extends StatefulWidget {
   const DetailNarratorMuslimHadithScreen({Key? key}) : super(key: key);
@@ -193,11 +194,12 @@ class _DetailNarratorMuslimHadithScreenState
                   ),
                   GestureDetector(
                     onTap: () {
-                      // Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //       builder: (context) => NarratorHadithScreen(),
-                      //     ));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                ListNarratorMuslimHadithScreen(),
+                          ));
                     },
                     child: Text(
                       'Lihat lainnya',
