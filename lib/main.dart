@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:haditsku/utils/constant.dart';
+import 'package:haditsku/views/splash_screen/views/splash_screen.dart';
 import 'views/about_screen/views/about_screen.dart';
 import 'views/home_screen/views/home_screen.dart';
 import 'views/search_hadith_screen/views/search_hadith_screen.dart';
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(primaryColor: Color(Constant.witheColorBase)),
       debugShowCheckedModeBanner: false,
-      home: MyHomePage(),
+      home: SplashScreen(),
     );
   }
 }
