@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:haditsku/provider/hadits_provider.dart';
 import 'package:haditsku/utils/constant.dart';
+import 'package:haditsku/views/splash_screen/views/splash_screen.dart';
+import 'package:provider/provider.dart';
 import 'views/about_screen/views/about_screen.dart';
 import 'views/home_screen/views/home_screen.dart';
 import 'views/search_hadith_screen/views/search_hadith_screen.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => HaditsProvider(),
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -14,7 +22,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(primaryColor: Color(Constant.witheColorBase)),
       debugShowCheckedModeBanner: false,
-      home: MyHomePage(),
+      home: SplashScreen(),
     );
   }
 }
