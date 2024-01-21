@@ -1,10 +1,10 @@
-import 'dart:convert';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:haditsku/models/hadits_model.dart';
 import 'package:haditsku/utils/constant.dart';
 import 'package:haditsku/views/narrator_hadith_screen/views/narrator_hadith_screen.dart';
 
+import '../../../services/hadits_services.dart';
 import '../../search_detail_screen/views/search_detail_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -14,30 +14,11 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   Future<List<HaditsModel>> _loadHaditsModels(List<String> fileNames) async {
-    final List<HaditsModel> haditsModels = [];
-
-    for (var fileName in fileNames) {
-      final String jsonString = await DefaultAssetBundle.of(context)
-          .loadString('assets/json/content_of_hadith/$fileName.json');
-
-      final jsonData = jsonDecode(jsonString);
-      haditsModels.add(HaditsModel.fromJson(jsonData));
-    }
-
-    return haditsModels;
+    return HaditsService.loadHaditsModels(context, fileNames);
   }
 
   Future<void> _refreshData() async {
-    // Add your logic to reload or refresh the data here
-    // For example, you can call _loadHaditsModels again
-    // Update the UI with the refreshed data
-    setState(() {
-      // Update your state variables if needed
-      // For example, if you have a List<HaditsModel> variable, update it:
-      // haditsModels = refreshedData;
-
-      // You might need to update other state variables as well
-    });
+    setState(() {});
   }
 
   @override
