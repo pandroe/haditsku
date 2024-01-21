@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:haditsku/provider/hadits_provider.dart';
 import 'package:haditsku/utils/constant.dart';
 import 'package:haditsku/views/splash_screen/views/splash_screen.dart';
-import 'package:provider/provider.dart';
 import 'views/about_screen/views/about_screen.dart';
 import 'views/home_screen/views/home_screen.dart';
 import 'views/search_hadith_screen/views/search_hadith_screen.dart';
 
 void main() {
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => HaditsProvider(),
-      child: MyApp(),
-    ),
+    MyApp(),
   );
 }
 

@@ -1,10 +1,10 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:haditsku/models/hadits_model.dart';
-
+import '../../../services/hadits_services.dart';
 import '../../../utils/constant.dart';
 import '../../search_result_hadith_screen/views/search_result_hadith_screen.dart';
+import 'package:flutter/foundation.dart' show kDebugMode;
 
 class SearchHaditsScreen extends StatefulWidget {
   @override
@@ -41,20 +41,18 @@ class _SearchHaditsScreenState extends State<SearchHaditsScreen> {
   }
 
   Future<List<HaditsModel>> _loadHaditsModels(List<String> fileNames) async {
-    final List<HaditsModel> models = [];
-
-    for (var fileName in fileNames) {
-      final String jsonString = await rootBundle
-          .loadString('assets/json/content_of_hadith/$fileName.json');
-
-      final jsonData = jsonDecode(jsonString);
-      models.add(HaditsModel.fromJson(jsonData));
-    }
-
-    return models;
+    return HaditsService.loadHaditsModels(context, fileNames);
   }
 
   void _performSearch(String query) {
+    if (kDebugMode) {
+      final startTime = DateTime.now();
+
+      final endTime = DateTime.now();
+      final duration = endTime.difference(startTime);
+      debugPrint('Keyword: ${query}');
+      debugPrint('Totaly Search time: ${duration.inMilliseconds} ms');
+    }
     if (query.length < 2) {
       // Show the popup for less than 2 characters
       showDialog(
