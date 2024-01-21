@@ -45,16 +45,9 @@ class AboutScreen extends StatelessWidget {
             ),
             SizedBox(height: constant.size.height * 0.050),
             Text(
-                '''Inovasi Hadits Kita terletak pada kemampuannya untuk memastikan keaslian hadis secara instan dan akurat, membantu pengguna menggali hikmah dan ajaran Islam yang tersembunyi dalam setiap kata-kata Rasulullah SAW dengan mudah.''',
+                '''Aplikasi HaditsQu ialah bertujuan menciptakan sistem library digital yang inovatif untuk kumpulan hadits, yang tidak hanya mencakup pembuatan sistem pencarian yang tepat untuk merapikan dan menyusun hadits berdasarkan nomor hadits periwayat, tetapi juga memberikan panduan yang lebih baik bagi umat Islam dalam mencari dan mengakses hadirs secara efektif di era digital. Aplikasi ini menciptakan jalan untuk memadukan pemahamanagamandengan teknologi digital, memfasilitasi pencarianhadits tanpa menghilangkan keaslian dan akurasi informasi agam, sehingga memungkinkan umat Islam untuk mendalami ajaran agama dengan lebih baik.''',
                 textAlign: TextAlign.justify,
                 style: TextStyle(fontSize: Constant.fontSemiSmall)),
-            SizedBox(height: constant.size.height * 0.025),
-            Text('Sumber',
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: Constant.fontSemiRegular)),
-            SizedBox(height: constant.size.height * 0.015),
-            Text('Nama Api', style: TextStyle(fontSize: Constant.fontSmall)),
             SizedBox(height: constant.size.height * 0.025),
             Text('Dibuat oleh',
                 style: TextStyle(
