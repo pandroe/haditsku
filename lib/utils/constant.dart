@@ -19,8 +19,8 @@ class Constant {
   static const int yellowColorSecondary = 0xFFF7DB5E;
   static const int redColorLight = 0xFFFF0000;
   static const int blackColorLight = 0xFF000000;
-  static const int brownColorNetralDark = 0xFF797979;
-  static const int brownColorNetralLight = 0xFFD1D3D2;
+  static const int grayColorNetralDark = 0xFF797979;
+  static const int grayColorNetralLight = 0xFFD1D3D2;
 
   final Size size;
 
