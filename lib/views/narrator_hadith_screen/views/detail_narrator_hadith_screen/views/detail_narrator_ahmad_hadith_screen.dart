@@ -1,4 +1,4 @@
-import 'dart:convert';
+import '../../../../../services/hadits_services.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -57,17 +57,7 @@ class _DetailNarratorAhmadHadithScreenState
   }
 
   Future<List<HaditsModel>> _loadHaditsModels(List<String> fileNames) async {
-    final List<HaditsModel> haditsModels = [];
-
-    for (var fileName in fileNames) {
-      final String jsonString = await DefaultAssetBundle.of(context)
-          .loadString('assets/json/content_of_hadith/$fileName.json');
-
-      final jsonData = jsonDecode(jsonString);
-      haditsModels.add(HaditsModel.fromJson(jsonData));
-    }
-
-    return haditsModels;
+    return HaditsService.loadHaditsModels(context, fileNames);
   }
 
   @override
