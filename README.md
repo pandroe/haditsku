@@ -36,6 +36,10 @@ Perangkat keras merupakan alat yang berfungsi untuk menjembatani antara pengemba
 4. Penyimpanan SSD 256 GB dan HDD 1 TB
 5. Printer
 
+## Desain UI/UX By
+
+[Fathia Azzahrah](https://www.linkedin.com/in/fathiaazzahrah/)
+
 ## Sumber Data
 
 [Link ke sumber data](https://github.com/gadingnst/hadith-api/tree/master/books)
