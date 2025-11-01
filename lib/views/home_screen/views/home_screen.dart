@@ -105,16 +105,19 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 SizedBox(height: constant.size.height * 0.050),
+                // Use Expanded to avoid Row overflow on small screens
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
-                      padding: const EdgeInsets.only(right: 18.0, left: 21.0),
-                      child: Text(
-                        'Hadits Terpilih',
-                        style: TextStyle(
-                          fontSize: Constant.fontBig,
-                          fontWeight: FontWeight.bold,
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 18.0, left: 21.0),
+                        child: Text(
+                          'Hadits Terpilih',
+                          style: TextStyle(
+                            fontSize: Constant.fontBig,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          overflow: TextOverflow.ellipsis,
                         ),
                       ),
                     ),
@@ -123,19 +126,21 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: GestureDetector(
                         onTap: () {
                           Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => NarratorHadithScreen(),
-                              ));
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => NarratorHadithScreen(),
+                            ),
+                          );
                         },
                         child: Text(
                           'Lihat lainnya',
                           style: TextStyle(
-                              color: Color(Constant.greenColorPrimary),
-                              fontWeight: FontWeight.bold),
+                            color: Color(Constant.greenColorPrimary),
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
-                    )
+                    ),
                   ],
                 ),
                 SizedBox(height: constant.size.height * 0.018),
@@ -152,7 +157,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   'content_of_ibnu_majah',
                   'content_of_malik',
                   'content_of_nasai',
-                  'content_of_tirmidzi'
+                  'content_of_tirmidzi',
                 ]),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
@@ -174,13 +179,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     );
                   } else if (snapshot.hasError) {
-                    return Center(
-                      child: Text('Error: ${snapshot.error}'),
-                    );
+                    return Center(child: Text('Error: ${snapshot.error}'));
                   } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                    return Center(
-                      child: Text('Tidak ada data yang tersedia.'),
-                    );
+                    return Center(child: Text('Tidak ada data yang tersedia.'));
                   }
 
                   final haditsModels = snapshot.data!;
@@ -200,8 +201,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   ];
                   allHadits.shuffle(random);
 
-                  final List<Hadith> first15Hadits =
-                      allHadits.take(15).toList();
+                  final List<Hadith> first15Hadits = allHadits
+                      .take(15)
+                      .toList();
 
                   return ListView.builder(
                     shrinkWrap: true,
@@ -253,7 +255,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         },
                         child: Container(
                           padding: const EdgeInsets.only(
-                              right: 18.0, left: 18.0, bottom: 25.0),
+                            right: 18.0,
+                            left: 18.0,
+                            bottom: 25.0,
+                          ),
                           child: Card(
                             color: Colors.white,
                             elevation: 5.0,
@@ -266,7 +271,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
                                 children: [
                                   SizedBox(
-                                      height: constant.size.height * 0.025),
+                                    height: constant.size.height * 0.025,
+                                  ),
                                   Text(
                                     '${currentHaditsModel?.data.name} - ${hadits.number}',
                                     style: TextStyle(
@@ -275,7 +281,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                   ),
                                   SizedBox(
-                                      height: constant.size.height * 0.025),
+                                    height: constant.size.height * 0.025,
+                                  ),
                                   Text(
                                     maxLines: 3,
                                     overflow: TextOverflow.ellipsis,
@@ -288,7 +295,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                   ),
                                   SizedBox(
-                                      height: constant.size.height * 0.025),
+                                    height: constant.size.height * 0.025,
+                                  ),
                                   Text(
                                     maxLines: 3,
                                     overflow: TextOverflow.ellipsis,
@@ -300,7 +308,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                   ),
                                   SizedBox(
-                                      height: constant.size.height * 0.025),
+                                    height: constant.size.height * 0.025,
+                                  ),
                                 ],
                               ),
                             ),
