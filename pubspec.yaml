@@ -62,6 +62,7 @@ flutter:
     - assets/images/
     - assets/buttons/images/
     - assets/json/content_of_hadith/
+    - assets/images/kitab_cover/
 
   # To add assets to your application, add an assets section, like this:
   # assets:
