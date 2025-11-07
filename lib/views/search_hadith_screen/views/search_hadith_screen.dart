@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:haditsku/models/hadits_model.dart';
 import '../../../services/hadits_services.dart';
 import '../../../utils/constant.dart';
@@ -7,8 +6,10 @@ import '../../search_result_hadith_screen/views/search_result_hadith_screen.dart
 import 'package:flutter/foundation.dart' show kDebugMode;
 
 class SearchHaditsScreen extends StatefulWidget {
+  const SearchHaditsScreen({super.key});
+
   @override
-  _SearchHaditsScreenState createState() => _SearchHaditsScreenState();
+  State<SearchHaditsScreen> createState() => _SearchHaditsScreenState();
 }
 
 class _SearchHaditsScreenState extends State<SearchHaditsScreen> {
@@ -29,7 +30,7 @@ class _SearchHaditsScreenState extends State<SearchHaditsScreen> {
       'content_of_ibnu_majah',
       'content_of_malik',
       'content_of_ahmad',
-      'content_of_darimi'
+      'content_of_darimi',
     ]).then((models) {
       setState(() {
         haditsModels = models;
@@ -109,8 +110,9 @@ class _SearchHaditsScreenState extends State<SearchHaditsScreen> {
               borderRadius: BorderRadius.circular(15.0),
             ),
             title: Text('Hadits tidak ditemukan'),
-            content:
-                Text('Maaf, kata kunci hadits yang Anda cari tidak ditemukan.'),
+            content: Text(
+              'Maaf, kata kunci hadits yang Anda cari tidak ditemukan.',
+            ),
             actions: [
               TextButton(
                 onPressed: () {
@@ -132,121 +134,124 @@ class _SearchHaditsScreenState extends State<SearchHaditsScreen> {
   Widget build(BuildContext context) {
     Constant constant = Constant(context);
     return Scaffold(
-      body: ListView(children: [
-        Padding(
-          padding: const EdgeInsets.only(top: 25.0, right: 18.0, left: 18.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  InkWell(
-                    child: Image.asset(
-                      'assets/buttons/images/chevron-left.png',
-                      height: constant.size.height * 0.035,
+      body: ListView(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 25.0, right: 18.0, left: 18.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    InkWell(
+                      child: Image.asset(
+                        'assets/buttons/images/chevron-left.png',
+                        height: constant.size.height * 0.035,
+                      ),
                     ),
-                  ),
-                  InkWell(
-                    child: Image.asset(
-                      'assets/buttons/images/more-vertical.png',
-                      height: constant.size.height * 0.035,
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: constant.size.height * 0.025),
-              Text(
-                'Cari Hadits',
-                style: TextStyle(
-                    fontSize: Constant.fontSemiBig,
-                    fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: constant.size.height * 0.025),
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12.0),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
-                      spreadRadius: 1,
-                      blurRadius: 5,
-                      offset: Offset(0, 2),
+                    InkWell(
+                      child: Image.asset(
+                        'assets/buttons/images/more-vertical.png',
+                        height: constant.size.height * 0.035,
+                      ),
                     ),
                   ],
                 ),
-                child: TextField(
-                  controller: _searchController,
-                  decoration: InputDecoration(
-                    contentPadding: EdgeInsets.all(25.0),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12.0),
-                      borderSide: BorderSide(
-                          color: Color(Constant.grayColorNetralLight)),
-                    ),
-                    prefixIconColor: Color(Constant.grayColorNetralLight),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12.0),
-                      borderSide: BorderSide(
-                          color: Color(Constant.grayColorNetralLight)),
-                    ),
-                    hintText: 'Ingin mencari hadits tentang...',
-                    hintStyle: TextStyle(),
-                    prefixIcon: Padding(
-                      padding: const EdgeInsets.only(left: 20.0, right: 18.0),
-                      child: Icon(
-                        Icons.search,
-                        size: 32.0,
+                SizedBox(height: constant.size.height * 0.025),
+                Text(
+                  'Cari Hadits',
+                  style: TextStyle(
+                    fontSize: Constant.fontSemiBig,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(height: constant.size.height * 0.025),
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12.0),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.5),
+                        spreadRadius: 1,
+                        blurRadius: 5,
+                        offset: Offset(0, 2),
                       ),
-                    ),
-                    suffixIcon: Padding(
-                      padding: const EdgeInsets.only(left: 18.0, right: 20.0),
-                      child: InkWell(
-                        child: Icon(
-                          Icons.clear_rounded,
+                    ],
+                  ),
+                  child: TextField(
+                    controller: _searchController,
+                    decoration: InputDecoration(
+                      contentPadding: EdgeInsets.all(25.0),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12.0),
+                        borderSide: BorderSide(
                           color: Color(Constant.grayColorNetralLight),
                         ),
-                        onTap: () {
-                          _searchController.clear();
-                        },
                       ),
+                      prefixIconColor: Color(Constant.grayColorNetralLight),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12.0),
+                        borderSide: BorderSide(
+                          color: Color(Constant.grayColorNetralLight),
+                        ),
+                      ),
+                      hintText: 'Ingin mencari hadits tentang...',
+                      hintStyle: TextStyle(),
+                      prefixIcon: Padding(
+                        padding: const EdgeInsets.only(left: 20.0, right: 18.0),
+                        child: Icon(Icons.search, size: 32.0),
+                      ),
+                      suffixIcon: Padding(
+                        padding: const EdgeInsets.only(left: 18.0, right: 20.0),
+                        child: InkWell(
+                          child: Icon(
+                            Icons.clear_rounded,
+                            color: Color(Constant.grayColorNetralLight),
+                          ),
+                          onTap: () {
+                            _searchController.clear();
+                          },
+                        ),
+                      ),
+                      fillColor: Color(Constant.witheColorNetral),
+                      filled: true,
                     ),
-                    fillColor: Color(Constant.witheColorNetral),
-                    filled: true,
+                    onSubmitted: (query) {
+                      _performSearch(query);
+                    },
                   ),
-                  onSubmitted: (query) {
-                    _performSearch(query);
-                  },
                 ),
-              ),
-              SizedBox(height: constant.size.height * 0.050),
-              Text(
-                'Pencarian Kata Kunci',
-                style: TextStyle(
+                SizedBox(height: constant.size.height * 0.050),
+                Text(
+                  'Pencarian Kata Kunci',
+                  style: TextStyle(
                     fontSize: Constant.fontSemiBig,
-                    fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: constant.size.height * 0.025),
-              Wrap(
-                alignment: WrapAlignment.center,
-                spacing: 8.0, // Adjust the spacing as needed
-                children: [
-                  _buildSearchButton('Kendaraan'),
-                  _buildSearchButton('Menuntut Ilmu'),
-                  _buildSearchButton('Kebersihan'),
-                  _buildSearchButton('Sabar'),
-                  _buildSearchButton('Puasa'),
-                  _buildSearchButton('Silaturahmi'),
-                  _buildSearchButton('Persaudaraan'),
-                  _buildSearchButton('Ikhlas'),
-                  _buildSearchButton('Sedekah'),
-                  _buildSearchButton('Akhlak'),
-                ],
-              ),
-            ],
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(height: constant.size.height * 0.025),
+                Wrap(
+                  alignment: WrapAlignment.center,
+                  spacing: 8.0, // Adjust the spacing as needed
+                  children: [
+                    _buildSearchButton('Kendaraan'),
+                    _buildSearchButton('Menuntut Ilmu'),
+                    _buildSearchButton('Kebersihan'),
+                    _buildSearchButton('Sabar'),
+                    _buildSearchButton('Puasa'),
+                    _buildSearchButton('Silaturahmi'),
+                    _buildSearchButton('Persaudaraan'),
+                    _buildSearchButton('Ikhlas'),
+                    _buildSearchButton('Sedekah'),
+                    _buildSearchButton('Akhlak'),
+                  ],
+                ),
+              ],
+            ),
           ),
-        ),
-      ]),
+        ],
+      ),
     );
   }
 
@@ -259,7 +264,8 @@ class _SearchHaditsScreenState extends State<SearchHaditsScreen> {
         shape: MaterialStatePropertyAll<OutlinedBorder>(
           RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(
-                15.0), // Sesuaikan dengan radius yang diinginkan
+              15.0,
+            ), // Sesuaikan dengan radius yang diinginkan
           ),
         ),
       ),

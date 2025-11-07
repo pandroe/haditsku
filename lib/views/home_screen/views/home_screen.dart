@@ -8,8 +8,10 @@ import '../../../services/hadits_services.dart';
 import '../../search_detail_screen/views/search_detail_screen.dart';
 
 class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
@@ -48,21 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
-                          SizedBox(height: constant.size.height * 0.050),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              InkWell(
-                                onTap: () {},
-                                child: Image.asset(
-                                  'assets/buttons/images/gg-details-more.png',
-                                  fit: BoxFit.cover,
-                                  height: constant.size.height * 0.040,
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: constant.size.height * 0.025),
+                          SizedBox(height: constant.size.height * 0.075),
                           Text(
                             'Assalamu\'alaikum!',
                             style: TextStyle(

@@ -11,14 +11,9 @@ import 'detail_narrator_hadith_screen/views/detail_narrator_ibnu_majah_hadith_sc
 import 'detail_narrator_hadith_screen/views/detail_narrator_nasai_hadith_screen.dart';
 import 'detail_narrator_hadith_screen/views/detail_narrator_tirmidzi_hadith_screen.dart';
 
-class NarratorHadithScreen extends StatefulWidget {
+class NarratorHadithScreen extends StatelessWidget {
   const NarratorHadithScreen({super.key});
 
-  @override
-  State<NarratorHadithScreen> createState() => _NarratorHadithScreenState();
-}
-
-class _NarratorHadithScreenState extends State<NarratorHadithScreen> {
   @override
   Widget build(BuildContext context) {
     Constant constant = Constant(context);
@@ -32,10 +27,7 @@ class _NarratorHadithScreenState extends State<NarratorHadithScreen> {
         ),
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: Text(
-          'Periwayat Hadits',
-          style: TextStyle(color: Colors.black),
-        ),
+        title: Text('Periwayat Hadits', style: TextStyle(color: Colors.black)),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -66,17 +58,19 @@ class _NarratorHadithScreenState extends State<NarratorHadithScreen> {
                       // Close CircularProgressIndicator
                       Navigator.pop(context);
                       Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                DetailNarratorBukhariHadithScreen(),
-                          ));
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              DetailNarratorBukhariHadithScreen(),
+                        ),
+                      );
                     },
                     child: Column(
                       children: [
                         Image.asset(
-                            height: constant.size.height * 0.180,
-                            'assets/images/kitab_cover/kitab-shahih-bukhari.jpg'),
+                          height: constant.size.height * 0.180,
+                          'assets/images/kitab_cover/kitab-shahih-bukhari.jpg',
+                        ),
                         SizedBox(height: constant.size.height * 0.015),
                         Text(
                           'Shahih Bukhari',
@@ -84,7 +78,7 @@ class _NarratorHadithScreenState extends State<NarratorHadithScreen> {
                             color: Colors.black,
                             fontSize: Constant.fontSemiSmall,
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -108,17 +102,19 @@ class _NarratorHadithScreenState extends State<NarratorHadithScreen> {
                       // Close CircularProgressIndicator
                       Navigator.pop(context);
                       Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                DetailNarratorMuslimHadithScreen(),
-                          ));
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              DetailNarratorMuslimHadithScreen(),
+                        ),
+                      );
                     },
                     child: Column(
                       children: [
                         Image.asset(
-                            height: constant.size.height * 0.180,
-                            'assets/images/kitab_cover/kitab-shahih-muslim.jpg'),
+                          height: constant.size.height * 0.180,
+                          'assets/images/kitab_cover/kitab-shahih-muslim.jpg',
+                        ),
                         SizedBox(height: constant.size.height * 0.015),
                         Text(
                           'Shahih Muslim',
@@ -150,17 +146,19 @@ class _NarratorHadithScreenState extends State<NarratorHadithScreen> {
                       // Close CircularProgressIndicator
                       Navigator.pop(context);
                       Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                DetailNarratorAbuDaudHadithScreen(),
-                          ));
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              DetailNarratorAbuDaudHadithScreen(),
+                        ),
+                      );
                     },
                     child: Column(
                       children: [
                         Image.asset(
-                            height: constant.size.height * 0.180,
-                            'assets/images/kitab_cover/kitab-sunan-abu-daud.jpg'),
+                          height: constant.size.height * 0.180,
+                          'assets/images/kitab_cover/kitab-sunan-abu-daud.jpg',
+                        ),
                         SizedBox(height: constant.size.height * 0.015),
                         Text(
                           'Sunan Abu Daud',
@@ -199,17 +197,19 @@ class _NarratorHadithScreenState extends State<NarratorHadithScreen> {
                       // Close CircularProgressIndicator
                       Navigator.pop(context);
                       Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                DetailNarratorTirmidziHadithScreen(),
-                          ));
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              DetailNarratorTirmidziHadithScreen(),
+                        ),
+                      );
                     },
                     child: Column(
                       children: [
                         Image.asset(
-                            height: constant.size.height * 0.180,
-                            'assets/images/kitab_cover/kitab-sunan-tirmidzi.jpg'),
+                          height: constant.size.height * 0.180,
+                          'assets/images/kitab_cover/kitab-sunan-tirmidzi.jpg',
+                        ),
                         SizedBox(height: constant.size.height * 0.015),
                         Text(
                           'Sunan Tirmidzi',
@@ -241,17 +241,19 @@ class _NarratorHadithScreenState extends State<NarratorHadithScreen> {
                       // Close CircularProgressIndicator
                       Navigator.pop(context);
                       Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                DetailNarratorNasaiHadithScreen(),
-                          ));
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              DetailNarratorNasaiHadithScreen(),
+                        ),
+                      );
                     },
                     child: Column(
                       children: [
                         Image.asset(
-                            height: constant.size.height * 0.180,
-                            'assets/images/kitab_cover/kitab-sunan-nasai.jpg'),
+                          height: constant.size.height * 0.180,
+                          'assets/images/kitab_cover/kitab-sunan-nasai.jpg',
+                        ),
                         SizedBox(height: constant.size.height * 0.015),
                         Text(
                           'Sunan Nasa\'i',
@@ -283,17 +285,19 @@ class _NarratorHadithScreenState extends State<NarratorHadithScreen> {
                       // Close CircularProgressIndicator
                       Navigator.pop(context);
                       Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                DetailNarratorIbnuMajahHadithScreen(),
-                          ));
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              DetailNarratorIbnuMajahHadithScreen(),
+                        ),
+                      );
                     },
                     child: Column(
                       children: [
                         Image.asset(
-                            height: constant.size.height * 0.180,
-                            'assets/images/kitab_cover/kitab-sunan-ibnu-majah.jpg'),
+                          height: constant.size.height * 0.180,
+                          'assets/images/kitab_cover/kitab-sunan-ibnu-majah.jpg',
+                        ),
                         SizedBox(height: constant.size.height * 0.015),
                         Text(
                           'Sunan Ibnu Majah',
@@ -332,17 +336,19 @@ class _NarratorHadithScreenState extends State<NarratorHadithScreen> {
                       // Close CircularProgressIndicator
                       Navigator.pop(context);
                       Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                DetailNarratorMalikHadithScreen(),
-                          ));
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              DetailNarratorMalikHadithScreen(),
+                        ),
+                      );
                     },
                     child: Column(
                       children: [
                         Image.asset(
-                            height: constant.size.height * 0.180,
-                            'assets/images/kitab_cover/kitab-muwatha-malik.jpg'),
+                          height: constant.size.height * 0.180,
+                          'assets/images/kitab_cover/kitab-muwatha-malik.jpg',
+                        ),
                         SizedBox(height: constant.size.height * 0.015),
                         Text(
                           'Muwatha\' Malik',
@@ -374,17 +380,19 @@ class _NarratorHadithScreenState extends State<NarratorHadithScreen> {
                       // Close CircularProgressIndicator
                       Navigator.pop(context);
                       Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                DetailNarratorAhmadHadithScreen(),
-                          ));
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              DetailNarratorAhmadHadithScreen(),
+                        ),
+                      );
                     },
                     child: Column(
                       children: [
                         Image.asset(
-                            height: constant.size.height * 0.180,
-                            'assets/images/kitab_cover/kitab-musnad-ahmad-bin-hanbal.jpg'),
+                          height: constant.size.height * 0.180,
+                          'assets/images/kitab_cover/kitab-musnad-ahmad-bin-hanbal.jpg',
+                        ),
                         SizedBox(height: constant.size.height * 0.015),
                         Text(
                           'Musnad Ahmad',
@@ -416,17 +424,19 @@ class _NarratorHadithScreenState extends State<NarratorHadithScreen> {
                       // Close CircularProgressIndicator
                       Navigator.pop(context);
                       Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                DetailNarratorDarimiHadithScreen(),
-                          ));
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              DetailNarratorDarimiHadithScreen(),
+                        ),
+                      );
                     },
                     child: Column(
                       children: [
                         Image.asset(
-                            height: constant.size.height * 0.180,
-                            'assets/images/kitab_cover/kitab-sunan-ad-darimi.jpg'),
+                          height: constant.size.height * 0.180,
+                          'assets/images/kitab_cover/kitab-sunan-ad-darimi.jpg',
+                        ),
                         SizedBox(height: constant.size.height * 0.015),
                         Text(
                           'Sunan Darimi',

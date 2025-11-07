@@ -9,14 +9,15 @@ class HadithDetailScreen extends StatefulWidget {
   final HaditsModel haditsModel;
   final String? query; // Make the query parameter nullable
 
-  HadithDetailScreen({
+  const HadithDetailScreen({
+    super.key,
     required this.hadith,
     required this.haditsModel,
     this.query, // Make the query parameter nullable
   });
 
   @override
-  _HadithDetailScreenState createState() => _HadithDetailScreenState();
+  State<HadithDetailScreen> createState() => _HadithDetailScreenState();
 }
 
 class _HadithDetailScreenState extends State<HadithDetailScreen> {
@@ -36,7 +37,8 @@ class _HadithDetailScreenState extends State<HadithDetailScreen> {
     // Set listener to detect scroll direction
     _scrollController.addListener(() {
       setState(() {
-        _isVisible = _scrollController.position.pixels != 0.0 &&
+        _isVisible =
+            _scrollController.position.pixels != 0.0 &&
             _scrollController.position.userScrollDirection ==
                 ScrollDirection.reverse;
       });
@@ -126,8 +128,10 @@ class _HadithDetailScreenState extends State<HadithDetailScreen> {
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: Icon(Icons.arrow_back_ios_new,
-              color: Color(Constant.blackColorLight)),
+          icon: Icon(
+            Icons.arrow_back_ios_new,
+            color: Color(Constant.blackColorLight),
+          ),
         ),
         actions: [
           Padding(
@@ -147,14 +151,16 @@ class _HadithDetailScreenState extends State<HadithDetailScreen> {
                       ? Text(
                           'A',
                           style: TextStyle(
-                              fontSize: Constant.fontSemiRegular,
-                              color: Color(Constant.greenColorPrimary)),
+                            fontSize: Constant.fontSemiRegular,
+                            color: Color(Constant.greenColorPrimary),
+                          ),
                         )
                       : Container(
                           decoration: BoxDecoration(
                             color: Color(Constant.greenColorPrimary),
-                            borderRadius:
-                                BorderRadius.circular(20.0), // Adjust as needed
+                            borderRadius: BorderRadius.circular(
+                              20.0,
+                            ), // Adjust as needed
                           ),
                           padding: EdgeInsets.all(8.0),
                           child: Text(
@@ -179,14 +185,16 @@ class _HadithDetailScreenState extends State<HadithDetailScreen> {
                       ? Text(
                           'A',
                           style: TextStyle(
-                              fontSize: Constant.fontBig,
-                              color: Color(Constant.greenColorPrimary)),
+                            fontSize: Constant.fontBig,
+                            color: Color(Constant.greenColorPrimary),
+                          ),
                         )
                       : Container(
                           decoration: BoxDecoration(
                             color: Color(Constant.greenColorPrimary),
-                            borderRadius:
-                                BorderRadius.circular(20.0), // Adjust as needed
+                            borderRadius: BorderRadius.circular(
+                              20.0,
+                            ), // Adjust as needed
                           ),
                           padding: EdgeInsets.all(8.0),
                           child: Text(
@@ -211,14 +219,16 @@ class _HadithDetailScreenState extends State<HadithDetailScreen> {
                       ? Text(
                           'A',
                           style: TextStyle(
-                              fontSize: Constant.fontExtraBig,
-                              color: Color(Constant.greenColorPrimary)),
+                            fontSize: Constant.fontExtraBig,
+                            color: Color(Constant.greenColorPrimary),
+                          ),
                         )
                       : Container(
                           decoration: BoxDecoration(
                             color: Color(Constant.greenColorPrimary),
-                            borderRadius:
-                                BorderRadius.circular(20.0), // Adjust as needed
+                            borderRadius: BorderRadius.circular(
+                              20.0,
+                            ), // Adjust as needed
                           ),
                           padding: EdgeInsets.all(8.0),
                           child: Text(
@@ -236,10 +246,7 @@ class _HadithDetailScreenState extends State<HadithDetailScreen> {
         ],
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: Text(
-          'Detail Hadits',
-          style: TextStyle(color: Colors.black),
-        ),
+        title: Text('Detail Hadits', style: TextStyle(color: Colors.black)),
       ),
       body: Stack(
         children: [
@@ -265,12 +272,14 @@ class _HadithDetailScreenState extends State<HadithDetailScreen> {
                       });
                     },
                     child: Text(
-                        showArabicText
-                            ? 'Sembunyikan text Arab'
-                            : 'Tampilkan text Arab',
-                        style: TextStyle(
-                            color: Color(Constant.greenColorPrimary),
-                            fontSize: Constant.fontRegular)),
+                      showArabicText
+                          ? 'Sembunyikan text Arab'
+                          : 'Tampilkan text Arab',
+                      style: TextStyle(
+                        color: Color(Constant.greenColorPrimary),
+                        fontSize: Constant.fontRegular,
+                      ),
+                    ),
                   ),
                   SizedBox(height: constant.size.height * 0.025),
                   if (showArabicText)
@@ -289,12 +298,14 @@ class _HadithDetailScreenState extends State<HadithDetailScreen> {
                       });
                     },
                     child: Text(
-                        showIndonesianText
-                            ? 'Sembunyikan text Indonesia'
-                            : 'Tampilkan text Indonesia',
-                        style: TextStyle(
-                            color: Color(Constant.greenColorPrimary),
-                            fontSize: Constant.fontRegular)),
+                      showIndonesianText
+                          ? 'Sembunyikan text Indonesia'
+                          : 'Tampilkan text Indonesia',
+                      style: TextStyle(
+                        color: Color(Constant.greenColorPrimary),
+                        fontSize: Constant.fontRegular,
+                      ),
+                    ),
                   ),
                   SizedBox(height: constant.size.height * 0.025),
                   if (showIndonesianText)
